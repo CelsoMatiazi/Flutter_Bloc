@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_study/bloc/block/counter.bloc.dart';
 import 'package:flutter_bloc_study/bloc/counter_bloc_page.dart';
+import 'package:flutter_bloc_study/cubit/counter_cubit_page.dart';
+import 'package:flutter_bloc_study/cubit/cubit/counter_cubit.dart';
 
 import 'home_page.dart';
 
@@ -19,8 +21,14 @@ class MyApp extends StatelessWidget {
       routes: {
         '/bloc': (_) =>  BlocProvider(
           create: (_) => CounterBloc(),
-          child: const CounterBlocPage())
+          child: const CounterBlocPage()
+        ),
+        "/cubit" : (_) => BlocProvider(
+          create: (_) => CounterCubit(),
+          child: const CounterCubitPage()
+        )
       },
+
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.amber,
