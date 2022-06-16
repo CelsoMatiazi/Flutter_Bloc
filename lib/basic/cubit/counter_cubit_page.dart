@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_study/bloc/block/counter.bloc.dart';
-import 'package:flutter_bloc_study/bloc/block/counter_event.dart';
-import 'package:flutter_bloc_study/bloc/block/counter_state.dart';
+import 'package:flutter_bloc_study/basic/cubit/cubit/counter_cubit.dart';
+import 'package:flutter_bloc_study/basic/cubit/cubit/counter_state.dart';
 
-class CounterBlocPage extends StatelessWidget {
-  const CounterBlocPage({Key? key}) : super(key: key);
+
+
+
+class CounterCubitPage extends StatelessWidget {
+  const CounterCubitPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Counter Bloc"),
+        title: const Text("Counter Cubit"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            BlocBuilder<CounterBloc, CounterState>(
-              builder: (context, state) {
+            BlocBuilder<CounterCubit, CounterState>(
+              builder: (context, state){
                 return Text("Counter ${state.counter}",
                   style: Theme.of(context).textTheme.headline5,
                 );
@@ -29,7 +31,7 @@ class CounterBlocPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(onPressed: (){
-                  context.read<CounterBloc>().add(CounterIncrement());
+                  context.read<CounterCubit>().increment();
                 },
                     icon: const Icon(
                       Icons.add_circle_outline_outlined,
@@ -38,7 +40,7 @@ class CounterBlocPage extends StatelessWidget {
                 ),
                 const SizedBox(width: 20,),
                 IconButton(onPressed: (){
-                  context.read<CounterBloc>().add(CounterDecrement());
+                  context.read<CounterCubit>().decrement();
                 },
                     icon: const Icon(
                       Icons.remove_circle_outline,
