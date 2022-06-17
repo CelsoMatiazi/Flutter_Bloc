@@ -6,7 +6,6 @@ import 'package:flutter_bloc_study/crud/ui/contact_list/bloc_controller/contact_
 import 'package:flutter_bloc_study/crud/ui/widgets/loader.dart';
 import 'contact_list/bloc_controller/contact_list_bloc.dart';
 
-
 class ContactListPage extends StatelessWidget {
   const ContactListPage({Key? key}) : super(key: key);
 
@@ -95,7 +94,10 @@ class ContactListPage extends StatelessWidget {
                                     Icons.account_circle,
                                     size: 45,
                                   ),
-                                  onTap: () => Navigator.pushNamed(context, "/contact/update"),
+                                  onTap: () async {
+                                    await Navigator.pushNamed(context, "/contact/update", arguments: contact);
+                                    context.read<ContactListBloc>().add(ContactListEventFindAll());
+                                  },
                                   title: Text(contact.name),
                                   subtitle: Text(contact.email),
                                 ),

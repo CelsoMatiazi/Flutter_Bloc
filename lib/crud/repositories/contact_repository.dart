@@ -19,19 +19,15 @@ class ContactRepository{
   }
 
   Future<void> update(ContactModel contactUpdate) async {
-    contacts.map((e){
-      if(e.id == contactUpdate.id){
-        e = contactUpdate;
+    for(int i = 0; i < contacts.length; i++){
+      if(contacts[i].id == contactUpdate.id){
+        contacts[i] = contactUpdate;
       }
-    }).toList();
+    }
   }
 
   Future<void> delete(ContactModel contactDelete) async {
-    for(int i = 0; i < contacts.length; i++){
-      if(contacts[i].id == contactDelete.id){
-        contacts.removeAt(i);
-      }
-    }
+    contacts.remove(contactDelete);
   }
 
 }
